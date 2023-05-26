@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Sign Up</title>
+</head>
+<body>
+   <h2>Sign Up</h2>
+   <form method="POST" action="/tilføj_bruger">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br><br>
+      <label for="admin">Admin Status:</label>
+      <select id="admin" name="admin" required>
+         <option value="0">NO</option>
+         <option value="1">YES</option>
+         </select><br><br>
+      <input type="submit" value="Sign Up">
+   </form>
+</body>
+</html>
