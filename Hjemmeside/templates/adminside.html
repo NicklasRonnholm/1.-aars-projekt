@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="kundeside.css">
-        <title>
-            Alka adminside anmeldelse
-        </title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            body {
+                background-color: orangered;
+            }
+    
+            table, th, td {
+                border: 1px solid black;
+                padding: 8px;
+            }
+        </style>
+        <link rel="stylesheet" href="adminside.css">
+        <title>Alka adminside anmeldelse</title>
     </head>
-    <body>
-        <h1>Tester om dette virker</h1>
-        
-    </body>
+<body>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <!-- Alt inde i thead er hvad kategorierne for tabellen -->
+                <th>Number</th>
+                <th>Involveret</th>
+                <th>Ulykke</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in datas %}
+            <tr>
+                <td>{{ row['User'] }}</td>
+                <td>{{ row['Involveret'] }}</td>
+                <td>{{ row['Ulykke'] }}</td>
+                <td>{{ row['Location'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class='text-right'><a href='{{url_for("login")}}' class='btn btn-success '>Logout</a></p>
+</body>
 </html>

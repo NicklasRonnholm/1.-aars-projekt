@@ -14,16 +14,16 @@ def login():
         con = sql.connect('kodeord_database.db')
         #Vi laver en cursor objekt så vi kan interegere med databasen
         cur = con.cursor()
-        query = 'select * from bruger where username=? and password=? and admin=?'
-        cur.execute(query, (username, password, 0))
+        query = 'select * from bruger where username=? and password=?'
+        cur.execute(query, (username, password))
         result = cur.fetchone()
         #Hvis username og password matcher result vil du komme ind på kundesiden
         if result:
             print(result)
-            if (result[3]) == "1":
+            if (result[3]) == '1':
                 print("adminside")
                 return redirect('/adminside')
-            elif (result[3]) == "0":
+            elif (result[3]) == '0':
                 print("kundeside")
                 return redirect('/kundeside')
             else:
@@ -34,21 +34,27 @@ def login():
 
 @Hjemmeside.route('/kundeside', methods=['GET', 'POST'])
 def kundeside():
-    if request.method == 'Get':
-        pass
-    if request.method == 'POST':
-        Involveret = request.form['Involveret']
-        Ulykke = request.form['Ulykke']
-        Location = request.form['Location']
-        print(Involveret,Ulykke,Location)
-        con = sql.connect('kundesag.db')
+    if request.method == 'POST':    
+        involveret = request.form['Involveret']
+        ulykke = request.form['Ulykke']
+        location = request.form['Location']
+        print(involveret,ulykke, location)
+        con=sql.connect("kundesag.db")
         cur=con.cursor()
-        cur.execute('insert into sager(Involveret, Ulykke, Location) values(?,?,?)', (Involveret, Ulykke, Location))
+        cur.execute("insert into sager(Involveret,Ulykke,Location) values (?,?,?)",(involveret,ulykke,location))
+        con.commit()
+        flash('sag added', 'success')
+        return redirect('/login')
     return render_template('kundeside.html')
 
 @Hjemmeside.route('/adminside', methods = ['GET', 'POST'])
 def adminside():
-    return render_template('adminside.html')
+    con = sql.connect('kundesag.db')
+    con.row_factory=sql.Row
+    cur = con.cursor()
+    cur.execute('select * from sager')
+    data = cur.fetchall()
+    return render_template('adminside.html', datas=data)
 
 @Hjemmeside.route('/tilføj_bruger', methods=['GET', 'POST'])
 def tilføj_bruger():

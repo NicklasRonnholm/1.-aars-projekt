@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            body {
+                background-color: orangered;
+            }
+        </style>
         <link rel="stylesheet" href="kundeside.css">
         <title>
             Alka ulykke anmeldelse
@@ -8,11 +13,14 @@
     </head>
     <body>
         <h1>Velkommen! Så... Du er kommet i en ulykke?</h1>
+        <form method="POST" action="/kundeside">
         <p>Har du et navn eller form for identifikation for dem involveret i ulykken?</p>
-        <input type="text" id="Involveret" name="Involveret">
+        <input type="text" id="Involveret" name="Involveret" required>
         <p>Hvilken ulykke har du været i?</p>
-        <input type="text" id="Ulykke" name="Ulykke">
+        <input type="text" id="Ulykke" name="Ulykke" required>
         <p>Hvor skete ulykken?</p>
-        <input type="text" id="Lokation" name="Lokation">
+        <input type="text" id="Location" name="Location" required> <br><br>
+        <input type="submit" value="Indsend">
+        </form>
     </body>
 </html>
