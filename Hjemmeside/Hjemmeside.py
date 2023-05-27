@@ -17,16 +17,18 @@ def login():
         query = 'select * from bruger where username=? and password=? and admin=?'
         cur.execute(query, (username, password, 0))
         result = cur.fetchone()
-        print(result)
         #Hvis username og password matcher result vil du komme ind på kundesiden
-        if result: 
-            if result[3] == 0:
-                return redirect('/kundeside')
-            elif result[3] == 1:
+        if result:
+            print(result)
+            if (result[3]) == "1":
+                print("adminside")
                 return redirect('/adminside')
+            elif (result[3]) == "0":
+                print("kundeside")
+                return redirect('/kundeside')
             else:
                 error = "Invalid username or password"
-                flash(error, 'failed')
+                flash(error)
     # Render the login HTML template
     return render_template('login.html')
 
