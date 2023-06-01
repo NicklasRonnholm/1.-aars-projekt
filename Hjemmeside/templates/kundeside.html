@@ -12,14 +12,17 @@
         </title>
     </head>
     <body>
-        <h1>Velkommen! Så... Du er kommet i en ulykke?</h1>
+        <h1>Velkommen! Du har været i en trafikulykke?</h1>
         <form method="POST" action="/kundeside">
-        <p>Har du et navn eller form for identifikation for dem involveret i ulykken?</p>
+        <p>Få fat i modpartens, navn, adresse, telefonnummer og registreringsnummer og indtast det nedenfor.<br>Få oplysningerne ved at aflæse det på modpartens kørekort og ring eventuelt til telefonnummeret for at sikre, at modparten ikke giver et falsk telefonnummer.<br>Hvis der er nogle vidner til stede, få dem til at skrive sine oplysninger ned og deres oplevelse af, hvad der skete.</p>
+        <p>Indtast oplysninger om dem, der var involveret i ulykken her</p>
         <input type="text" id="Involveret" name="Involveret" required>
-        <p>Hvilken ulykke har du været i?</p>
+        <p>Hvad skete der i ulykken?</p>
         <input type="text" id="Ulykke" name="Ulykke" required>
         <p>Hvor skete ulykken?</p>
         <input type="text" id="Location" name="Location" required> <br><br>
+        <label> Upload billede her: </label>
+        <input type="file" id="myFile" /> <br /><br />
         <input type="submit" value="Indsend">
         </form>
     </body>
